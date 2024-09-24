@@ -1,67 +1,147 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Here's the updated README that includes instructions for cloning your project from GitHub:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# README for Laravel Project
 
-## About Laravel
+## Table of Contents
+1. [Prerequisites](#prerequisites)
+2. [Step 1: Clone the Project](#step-1-clone-the-project)
+3. [Step 2: Install PHP](#step-2-install-php)
+4. [Step 3: Install Composer](#step-3-install-composer)
+5. [Step 4: Install Laravel](#step-4-install-laravel)
+6. [Step 5: Set Up the Project](#step-5-set-up-the-project)
+7. [Step 6: Configure the Environment](#step-6-configure-the-environment)
+8. [Step 7: Run the Application](#step-7-run-the-application)
+9. [Step 8: Access the Application](#step-8-access-the-application)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Prerequisites
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Before starting, ensure that you have the following software installed on your computer:
 
-## Learning Laravel
+- A web server (like Apache or Nginx)
+- PHP (version 8.0 or higher)
+- Composer (a dependency manager for PHP)
+- A database server (like MySQL or SQLite)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Step 1: Clone the Project
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Open your terminal or command prompt.
+2. Run the following command to clone the repository:
+   ```bash
+   git clone https://github.com/tesarp1812/admin_transaksi.git
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+3. Navigate into the project directory:
+   ```bash
+   cd admin_transaksi
+   ```
 
-## Laravel Sponsors
+## Step 2: Install PHP
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Windows
+1. Download [XAMPP](https://www.apachefriends.org/index.html) (includes PHP, MySQL, and Apache) and install it.
+2. During installation, select the components you need and complete the setup.
 
-### Premium Partners
+### macOS
+1. You can install PHP using [Homebrew](https://brew.sh/):
+   ```bash
+   brew install php
+   ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Linux
+1. Install PHP and required extensions using the package manager:
+   ```bash
+   sudo apt update
+   sudo apt install php php-cli php-mbstring php-xml php-curl
+   ```
 
-## Contributing
+## Step 3: Install Composer
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### All Platforms
+1. Download Composer from the [official website](https://getcomposer.org/download/).
+2. Follow the installation instructions for your operating system.
 
-## Code of Conduct
+### Verify Installation
+Run the following command in your terminal:
+```bash
+composer --version
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Step 4: Install Laravel
 
-## Security Vulnerabilities
+1. Open your terminal/command prompt.
+2. Run the following command to install Laravel globally:
+   ```bash
+   composer global require laravel/installer
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. Add Composer's global bin directory to your PATH (if not already done). The location varies by OS:
+   - **Windows:** `C:\Users\<YourUsername>\AppData\Roaming\Composer\vendor\bin`
+   - **macOS/Linux:** Add `~/.composer/vendor/bin` to your `.bashrc`, `.bash_profile`, or `.zshrc` file.
 
-## License
+### Verify Installation
+Run the following command:
+```bash
+laravel --version
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# admin_transaksi
+## Step 5: Set Up the Project
+
+1. Copy the `.env.example` file to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Open the `.env` file and set up your database configuration:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database_name
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
+
+3. Generate an application key:
+   ```bash
+   php artisan key:generate
+   ```
+
+## Step 6: Run the Application
+
+1. Migrate the database and run seeders:
+   ```bash
+   php artisan migrate --seed
+   ```
+
+   This command will apply any pending migrations and seed the database with initial data as defined in your seeder classes.
+
+2. Start the development server:
+   ```bash
+   php artisan serve
+   ```
+
+## Step 7: Access the Application
+
+1. Open your web browser and go to:
+   ```
+   http://localhost:8000
+   ```
+2. Open history Transaction web browser and go to:
+   ```
+   http://localhost:8000/transaction
+   ```
+3. Create Transaction web browser and go to:
+   ```
+   http://localhost:8000/transaction/create
+   ```
+You should see the default Laravel welcome page!
+
+---
+
+### Additional Notes
+- For further development, you can install additional packages and set up routes, controllers, and views as needed.
+- Consider using a version control system like Git for better project management.
+
+This README provides a comprehensive guide to getting started with your Laravel project, including cloning the repository and running seeders. Adjust any specific commands or configurations based on your project's requirements!
