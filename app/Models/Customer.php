@@ -9,14 +9,17 @@ class Customer extends Model
 {
     use HasFactory;
 
-    protected $table = 'customers'; 
-    protected $primaryKey = 'kode_customer'; 
-    public $incrementing = false; 
-    protected $keyType = 'string'; 
+    protected $table = 'customer'; 
+    // protected $primaryKey = 'kode_customer'; 
 
     protected $fillable = [
         'kode_customer',
         'nama_customer',
         'alamat',
     ];
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'kode_customer', 'kode_customer');
+    }
 }

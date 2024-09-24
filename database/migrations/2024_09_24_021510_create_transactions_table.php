@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
-            $table->uuid('no_transaksi')->primary();
+        Schema::create('transaksi', function (Blueprint $table) {
+            $table->string('no_transaksi', 5);
             $table->date('tgl_transaksi');
-            $table->string('kode_customer');
-            $table->float('total');
-            $table->text('keterangan')->nullable();
+            $table->string('kode_customer', 5)->nullable();
+            $table->float('total')->nullable();
+            $table->string('keterangan', 200)->nullable();
             $table->timestamps();
-
-            $table->foreign('kode_customer')->references('kode_customer')->on('customers')->onDelete('cascade');
+        
+            $table->primary(['no_transaksi', 'tgl_transaksi']); 
+            $table->foreign('kode_customer')->references('kode_customer')->on('customer')->onDelete('cascade');
         });
     }
 
@@ -28,6 +29,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::table('transaksi', function (Blueprint $table) {
+            // Hapus kunci asing sebelum menghapus tabel
+            $table->dropForeign(['kode_customer']);
+        });
+
+        Schema::dropIfExists('transaksi');
     }
 };

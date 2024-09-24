@@ -9,10 +9,12 @@ class TransactionDetail extends Model
 {
     use HasFactory;
 
-    protected $table = 'transaction_details';
+    protected $table = 'detail_transaksi';
+    // protected $primaryKey = ['no_transaksi', 'tgl_transaksi','kode_barang', 'urut']; 
+    public $incrementing = false; 
+    protected $keyType = 'string';
 
     protected $fillable = [
-        'id_transaksi',
         'no_transaksi',
         'tgl_transaksi',
         'kode_barang',

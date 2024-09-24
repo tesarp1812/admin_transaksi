@@ -30,6 +30,14 @@ class AdministrationControllers extends Controller
         }));
     }
 
+    public function showHistory()
+    {
+        $transactions = Transaction::with('details.item')->get();
+
+        return view('transactions.history', compact('transactions'));
+    }
+
+
     public function getCustomers()
     {
         $customers = Customer::all();
@@ -47,6 +55,7 @@ class AdministrationControllers extends Controller
 
         $customers = Customer::all(); // Fetch customers
         $items = Item::all(); // Fetch items
+        // dd($customers);
         return view('transactions.create', compact('customers', 'items'));
     }
 
@@ -54,10 +63,10 @@ class AdministrationControllers extends Controller
     {
         // Validasi data
         $validator = Validator::make($request->all(), [
-            'kode_customer' => 'required|exists:customers,kode_customer',
+            'kode_customer' => 'required|exists:customer,kode_customer',
             'total' => 'required|numeric|min:0',
             'details' => 'required|array',
-            'details.*.kode_barang' => 'required|exists:items,kode_barang',
+            'details.*.kode_barang' => 'required|exists:barang,kode_barang',
             'details.*.qty' => 'required|integer|min:1',
             'details.*.harga' => 'required|numeric|min:0',
             'details.*.urut' => 'sometimes|integer', // Optional field
@@ -99,13 +108,13 @@ class AdministrationControllers extends Controller
 
     public function storeTransaction(Request $request)
     {
-        // Validasi data
         // dd($request->all());
+        // Validasi data
         $validator = Validator::make($request->all(), [
-            'kode_customer' => 'required|exists:customers,kode_customer',
+            'kode_customer' => 'required|exists:customer,kode_customer',
             'total' => 'required|numeric|min:0',
             'details' => 'required|array',
-            'details.*.kode_barang' => 'required|exists:items,kode_barang',
+            'details.*.kode_barang' => 'required|exists:barang,kode_barang',
             'details.*.qty' => 'required|integer|min:1',
             'details.*.harga' => 'required|numeric|min:0',
             'details.*.urut' => 'sometimes|integer',
@@ -116,11 +125,11 @@ class AdministrationControllers extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Generate UUID untuk no_transaksi
-        $noTransaksi = (string) Str::uuid();
+        // Generate kode unik untuk no_transaksi
+        $noTransaksi = strtoupper(substr(md5(uniqid(rand(), true)), 0, 5)); // Menghasilkan kode unik 5 karakter
 
         // Buat transaksi
-         Transaction::create([
+        Transaction::create([
             'no_transaksi' => $noTransaksi,
             'kode_customer' => $request->kode_customer,
             'tgl_transaksi' => now(),
@@ -131,18 +140,16 @@ class AdministrationControllers extends Controller
         // Simpan detail transaksi
         foreach ($request->details as $detail) {
             TransactionDetail::create([
-                'id_transaksi' => (string) Str::uuid(),
                 'no_transaksi' => $noTransaksi,
+                'tgl_transaksi' => now(), // Tanggal transaksi
                 'kode_barang' => $detail['kode_barang'],
                 'qty' => $detail['qty'],
                 'harga' => $detail['harga'],
-                'urut' => $detail['urut'] ?? 1,
-                'tgl_transaksi' => now(),
+                'urut' => $detail['urut'] ?? 1, // Urutan default 1 jika tidak ada
             ]);
         }
 
         // Redirect kembali dengan pesan sukses
         return redirect("/transaction/create")->with('success', 'Transaksi berhasil disimpan!');
-
     }
 }

@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
-            $table->uuid('kode_barang')->primary();
-            $table->string('nama_barang');
+        Schema::create('barang', function (Blueprint $table) {
+            $table->string('kode_barang',5)->primary();
+            $table->string('nama_barang',100);
             $table->integer('stok')->nullable();
             $table->float('harga')->nullable();
             $table->timestamps();
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('barang');
     }
 };

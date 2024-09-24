@@ -9,11 +9,14 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $table = 'transactions';
-    protected $primaryKey = 'no_transaksi'; 
+    protected $table = 'transaksi';
+    // protected $primaryKey = ['no_transaksi', 'tgl_transaksi']; 
     public $incrementing = false; 
     protected $keyType = 'string'; 
-
+    protected $casts = [
+        'tgl_transaksi' => 'datetime',
+    ];
+    
     protected $fillable = [
         'no_transaksi',
         'tgl_transaksi',
